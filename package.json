@@ -3,7 +3,7 @@
   "description": "DocSet Generator",
   "author": "Alexandrine Boissière",
   "license": "ISC",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "lib/docset-generator",
   "dependencies": {
     "extended-fs": "^0.3.3",
