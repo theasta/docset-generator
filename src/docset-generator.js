@@ -151,7 +151,8 @@ export default class DocSetGenerator {
   _createDatabase() {
     this.sequelize = new Sequelize(DATABASE_NAME, DATABASE_USER, DATABASE_PWD, {
       dialect: 'sqlite',
-      storage: this.docSetSqlitePath
+      storage: this.docSetSqlitePath,
+      logging: this.log
     });
 
     this.log("Database " + SQLITE_DB + " successfully created.");
@@ -178,7 +179,9 @@ export default class DocSetGenerator {
     });
 
     return this.sequelize
-      .sync({ force: true })
+      .sync({
+        force: true
+      })
       .then(() => SearchItem.bulkCreate(this.entries));
   }
 }
