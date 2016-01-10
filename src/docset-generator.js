@@ -22,16 +22,15 @@ const DOCUMENTS_PATH = ['Contents', 'Resources', 'Documents'];
 export default class DocSetGenerator {
   /**
    * @constructor
-   * @param {object} config
-   * @param {string} config.destination - Folder in which to create the docSet
-   * @param {string} config.documentation - path to the html documentation
-   * @param {string} config.name
-   * @param {string} [config.identifier]
-   * @param {string} [config.index=index.html]
-   * @param {string} [config.enableJavascript=false]
-   * @param {string} [config.platformFamily]
-   * @param {string} [config.icon] - path to the icon
-   * @param {Array<{ name:string, type:string, path:string }>} [config.entries]
+   * @param {string} destination - Folder in which to create the docSet
+   * @param {string} documentation - path to the html documentation
+   * @param {string} name
+   * @param {string} [identifier]
+   * @param {string} [index=index.html]
+   * @param {string} [enableJavascript=false]
+   * @param {string} [platformFamily]
+   * @param {string} [icon] - path to the icon
+   * @param {Array<{ name:string, type:string, path:string }>} [entries]
    */
   constructor({destination, documentation, enableJavascript=false, entries=[], icon, index='index.html', name, identifier=name, platformFamily=name, verbose=false}) {
     if (!fs.existsSync(documentation)) {

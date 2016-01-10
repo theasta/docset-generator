@@ -5,7 +5,7 @@ Generates a DocSet from html documentation.
 ## Installation
 
 ``
-npm install docset-generator --save-dev
+npm install docset-generator --save
 ``
 
 ## Usage
@@ -33,7 +33,7 @@ The configuration parameter is an object with the following keys.
 * `documentation`: path to the html documentation
 * `destination`: path to the directory in which you want to generate the docSet
 * `enableJavascript`: boolean, enable Javascript in the generated docSet
-* `entries`: [Entries]((#entries) that will populate the docSet database [optional]
+* `entries`: [Entries](#entries) that will populate the docSet database [optional]
 * `icon`: path to the docSet icon [optional]
 * `index`: path to the index page of your html documentation [optional, default to index.html]
 * `platformFamily`: will be used to fill the DocSetPlatformFamily attribute in the Info.plist file [optional, falls back to the name]
