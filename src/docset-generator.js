@@ -1,6 +1,7 @@
 let fs = require('fs');
-let path = require('path');
 let fsx = require('extended-fs');
+let os = require('os');
+let path = require('path');
 let Sequelize = require("sequelize");
 
 let isValidString = str => typeof str === 'string' && str.trim().length > 0;
@@ -32,7 +33,7 @@ export default class DocSetGenerator {
    * @param {string} [icon] - path to the icon
    * @param {Array<{ name:string, type:string, path:string }>} [entries]
    */
-  constructor({destination, documentation, enableJavascript=false, entries=[], icon, index='index.html', name, identifier=name, platformFamily=name, verbose=false}) {
+  constructor({documentation, destination=documentation, enableJavascript=false, entries=[], icon, index='index.html', name, identifier=name, platformFamily=name, verbose=false}) {
     if (!fs.existsSync(documentation)) {
       throw Error("Please provide the path to the html documentation (config: documentation)")
     }
@@ -43,8 +44,15 @@ export default class DocSetGenerator {
 
     this.log = (verbose && typeof console === 'object') ? console.log : () => {};
 
-    this.documentation = documentation;
-    this.docSetRoot = destination;
+    this.documentation = path.resolve(documentation);
+    this.docSetRoot = path.resolve(destination);
+
+    this.documentationAtDocSetRoot = this.documentation === this.docSetRoot;
+
+    if (!this.documentationAtDocSetRoot && this.docSetRoot.indexOf(this.documentation) > -1) {
+      throw Error('The docSet destination can\'t be a subfolder of the documentation folder');
+    }
+
     this.icon = icon;
     this.entries = entries;
     // Gathering info needed by Info.plist
@@ -78,6 +86,15 @@ export default class DocSetGenerator {
    * @private
    */
   _generateDocSet() {
+    // if the documentation is also the docSet destination folder, move the documentation to the tmp folder
+    if (this.documentationAtDocSetRoot) {
+      var tmpDestination = path.join(os.tmpdir(),'docsetGeneratorDocumentation' + Date.now());
+      console.log(tmpDestination);
+      fsx.copyDirSync(this.documentation, tmpDestination);
+      fsx.rmDirSync(this.documentation);
+      this.documentation = tmpDestination;
+    }
+
     if (!fs.existsSync(this.docSetRoot)) {
       fsx.mkdirpSync(this.docSetRoot);
     }
