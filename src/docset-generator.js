@@ -19,6 +19,7 @@ const DATABASE_PWD = 'password';
 const CONTENTS_PATH = ['Contents'];
 const RESOURCES_PATH = ['Contents', 'Resources'];
 const DOCUMENTS_PATH = ['Contents', 'Resources', 'Documents'];
+const DOCUMENTATION_TMP_PREFIX = 'docset-generator-';
 
 export default class DocSetGenerator {
   /**
@@ -88,8 +89,7 @@ export default class DocSetGenerator {
   _generateDocSet() {
     // if the documentation is also the docSet destination folder, move the documentation to the tmp folder
     if (this.documentationAtDocSetRoot) {
-      var tmpDestination = path.join(os.tmpdir(),'docsetGeneratorDocumentation' + Date.now());
-      console.log(tmpDestination);
+      var tmpDestination = path.join(os.tmpdir(), DOCUMENTATION_TMP_PREFIX + Date.now());
       fsx.copyDirSync(this.documentation, tmpDestination);
       fsx.rmDirSync(this.documentation);
       this.documentation = tmpDestination;
