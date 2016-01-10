@@ -1,0 +1,33 @@
+{
+  "name": "docset-generator",
+  "description": "DocSet Generator",
+  "author": "Alexandrine Boissière",
+  "license": "ISC",
+  "version": "0.1.0",
+  "main": "lib/docset-generator",
+  "dependencies": {
+    "extended-fs": "^0.3.3",
+    "sequelize": "^3.15.1",
+    "sqlite3": "^3.1.1"
+  },
+  "scripts": {
+    "test": "npm run build && cd test && node test.js",
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "dash",
+    "docset",
+    "documentation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/theasta/docset-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theasta/docset-generator/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13"
+  }
+}
