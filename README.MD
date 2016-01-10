@@ -1,6 +1,6 @@
 # DocSet Generator
 
-Generates a DocSet from html documentation.
+Generates a docSet from html documentation.
 
 ## Installation
 
