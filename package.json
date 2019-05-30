@@ -6,6 +6,7 @@
   "version": "0.2.2",
   "main": "lib/docset-generator",
   "dependencies": {
+
     "extended-fs": "^0.3.3",
     "sequelize": "^5.8.7",
     "sqlite3": "^4.0.8"
@@ -27,7 +28,7 @@
     "url": "https://github.com/theasta/docset-generator/issues"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13"
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
